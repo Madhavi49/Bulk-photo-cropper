@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success - Bulk Photo Cropper</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+ <nav class="navbar">
+    <div class="breadcrumb">
+        <!-- Change span to 'a' tag -->
+        <a href="{% url 'home' %}" class="home-link">🏠 Home</a>
+        <span class="separator">»</span>
+        <span class="current">Bulk photo cropper</span>
+    </div>
+</nav>
+
+    <div class="main-section success-layout">
+        <!-- Top Title -->
+        <div class="brand-header">
+            <div class="brand">
+                <div class="logo">🖼</div>
+                <span>Bulk photo cropper</span>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <!-- Download Section -->
+        <div class="download-box-final">
+            <h1>Your IMAGES have been resized!</h1>
+            
+             <div class="action-buttons">
+        
+        <!-- This anchor uses the .download-anchor class -->
+        <a href="{% url 'download_all' %}" class="download-btn-main">
+            📥 Download resized IMAGES
+        </a>
+
+        <!-- This link uses the .back-link class -->
+        <a href="{% url 'home' %}" class="back-link">click here to resize more images</a>
+            </a>
+            </div>
+        </div>
+
+        <!-- Tools Grid Section (3x3) -->
+        <div class="tools-container">
+            <p class="tools-title">You Can Also Continue With</p>
+            <div class="tools-grid">
+                <!-- Tool 1 -->
+                <div class="tool-card">
+                    <span class="tool-icon">🆔</span>
+                    <span class="tool-name">Id Card Generator</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 2 -->
+                <div class="tool-card">
+                    <span class="tool-icon">🖼️</span>
+                    <span class="tool-name">Bulk Photos Background Remover</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 3 -->
+                <div class="tool-card">
+                    <span class="tool-icon">✨</span>
+                    <span class="tool-name">Bulk Photos Blur To Unblur</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 4 -->
+                <div class="tool-card">
+                    <span class="tool-icon">📄</span>
+                    <span class="tool-name">Bulk photos JPG to PDF any to any format</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 5 -->
+                <div class="tool-card">
+                    <span class="tool-icon">📏</span>
+                    <span class="tool-name">Bulk photos sheet arrangements</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 6 -->
+                <div class="tool-card">
+                    <span class="tool-icon">📐</span>
+                    <span class="tool-name">Bulk photos resize & resolutions as we set</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 7 -->
+                <div class="tool-card">
+                    <span class="tool-icon">🔄</span>
+                    <span class="tool-name">Bulk photos rotate to any side</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 8 -->
+                <div class="tool-card">
+                    <span class="tool-icon">🔢</span>
+                    <span class="tool-name">Bulk photos page numbering</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+                <!-- Tool 9 -->
+                <div class="tool-card">
+                    <span class="tool-icon">📑</span>
+                    <span class="tool-name">Bulk photos JPEG to JPG any to any format</span>
+                    <span class="tool-arrow">›</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer / Share Section -->
+        <div class="share-footer">
+            <p>Want to thank us? Help us grow by sharing the tool with others!</p>
+            <small>The best way to support us is by spreading the word about this tool.</small>
+            <div class="social-btns">
+                <button class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="16"> Instagram</button>
+                <button class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="16"> Facebook</button>
+                <button class="social-btn"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" width="16"> Linked In</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

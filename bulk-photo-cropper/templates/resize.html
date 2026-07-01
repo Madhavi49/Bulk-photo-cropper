@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resize Options - Bulk Photo Cropper</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}" style="text-decoration: none; color: inherit;">
+            <b>🏠 Home</b>
+        </a>
+        <span>»</span>
+        <b class="current">Bulk photo cropper</b>
+    </nav>
+
+    <div class="main-layout">
+
+        <!-- GALLERY -->
+        <section class="gallery-container">
+
+            <div class="gallery-header">
+                <div class="brand-small">🖼 Bulk photo cropper</div>
+
+                <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data" id="addForm">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="first_upload" value="no">
+
+                    <button type="button" class="add-images-btn"
+                        onclick="document.getElementById('fileIn').click()">
+                        Add more images <span class="plus-icon">+</span>
+                    </button>
+
+                    <input
+                        type="file"
+                        name="files"
+                        id="fileIn"
+                        multiple
+                        style="display:none"
+                        onchange="document.getElementById('addForm').submit()">
+                </form>
+            </div>
+
+            <div class="image-grid">
+                {% for img in images %}
+                <div class="image-card">
+                    <div class="img-preview">
+                        <img src="{% static 'uploads/' %}{{ img }}" alt="{{ img }}">
+                    </div>
+
+                    <div class="dim-tag">
+                        720 x 1280
+                        <span class="arrow-icon">➔</span>
+                        360 x 640
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </section>
+
+        <!-- SIDEBAR -->
+        <form action="{% url 'process' %}" method="POST" class="sidebar-panel">
+            {% csrf_token %}
+
+            <h2>Resize Options</h2>
+
+            <input type="hidden" name="mode" id="modeVal" value="pixel">
+            <input type="hidden" name="perc" id="percVal" value="50">
+
+            <div class="tab-pill-container">
+                <button type="button" id="tab1" class="tab-pill active"
+                    onclick="switchTab('pixel')">
+                    By Pixels
+                </button>
+
+                <button type="button" id="tab2" class="tab-pill"
+                    onclick="switchTab('percent')">
+                    By Percentage
+                </button>
+            </div>
+
+            <!-- Pixel Mode -->
+            <div id="sec-pixel">
+                <p class="sidebar-hint">
+                    Resize all images to a maximum size of ?
+                </p>
+
+                <div class="input-row">
+                    <label>Width (px):</label>
+                    <input type="number" name="width" value="0">
+                </div>
+
+                <div class="input-row">
+                    <label>Height (px):</label>
+                    <input type="number" name="height" value="0">
+                </div>
+            </div>
+
+            <!-- Percentage Mode -->
+            <div id="sec-percent" style="display:none;">
+                <p class="sidebar-hint">
+                    Resize all images by selecting percentages
+                </p>
+
+                <div class="perc-grid">
+
+                    <div class="perc-box" onclick="selectP(this,25)">
+                        <div class="perc-fill" style="width:25%;"></div>
+                        <div class="perc-label">
+                            25%<br>Smaller
+                        </div>
+                    </div>
+
+                    <div class="perc-box active" onclick="selectP(this,50)">
+                        <div class="perc-fill" style="width:50%;"></div>
+                        <div class="perc-label">
+                            50%<br>Smaller
+                        </div>
+                    </div>
+
+                    <div class="perc-box full-width" onclick="selectP(this,70)">
+                        <div class="perc-fill" style="width:70%;"></div>
+                        <div class="perc-label">
+                            70% Smaller
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="checkbox-row">
+                <label>
+                    <input type="checkbox" name="aspect" checked>
+                    Maintain aspect ratio
+                </label>
+
+                <label>
+                    <input type="checkbox" name="no_enlarge">
+                    Do not enlarge if smaller
+                </label>
+            </div>
+
+            <button type="submit" class="resize-submit-btn">
+                Resize Images
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        function switchTab(mode) {
+
+            const pixelSec = document.getElementById('sec-pixel');
+            const percentSec = document.getElementById('sec-percent');
+
+            const btn1 = document.getElementById('tab1');
+            const btn2 = document.getElementById('tab2');
+
+            const modeInput = document.getElementById('modeVal');
+
+            if (mode === 'pixel') {
+
+                pixelSec.style.display = 'block';
+                percentSec.style.display = 'none';
+
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+
+                modeInput.value = 'pixel';
+
+            } else {
+
+                pixelSec.style.display = 'none';
+                percentSec.style.display = 'block';
+
+                btn2.classList.add('active');
+                btn1.classList.remove('active');
+
+                modeInput.value = 'percent';
+            }
+        }
+
+        function selectP(el, val) {
+
+            document.querySelectorAll('.perc-box').forEach(box => {
+                box.classList.remove('active');
+            });
+
+            el.classList.add('active');
+
+            document.getElementById('percVal').value = val;
+        }
+
+    </script>
+
+</body>
+</html>

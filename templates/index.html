@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bulk Photo Cropper</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}" style="text-decoration:none;color:inherit;">
+            🏠 Home
+        </a>
+        <span style="margin:0 10px">»</span>
+        <span class="current">Bulk photo cropper</span>
+    </nav>
+
+    <div class="main-section">
+
+        <div class="hero">
+            <h1>
+                Powerful <span>Bulk</span> Photo
+                <span>Cropping</span><br>
+                Technology to Save Time and Efficiency
+            </h1>
+
+            <p>
+                Easily crop and resize multiple images at once.
+            </p>
+        </div>
+
+        <!-- UPLOAD FORM -->
+        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- IMPORTANT -->
+            <input type="hidden" name="first_upload" value="yes">
+
+            <div class="upload-box">
+
+                <p>Drag Your Images Here</p>
+
+                <input
+                    type="file"
+                    name="files"
+                    id="fin"
+                    multiple
+                    style="display:none"
+                    onchange="this.form.submit()">
+
+                <button
+                    type="button"
+                    onclick="document.getElementById('fin').click()">
+                    Select Files
+                </button>
+
+            </div>
+        </form>
+
+        <!-- STEPS -->
+        <div class="steps-small">
+
+            <h4>Auto crop images & resize images in batch</h4>
+
+            <p class="sub-text">
+                Smart and content aware image cropper & resizing
+            </p>
+
+            <div class="points">
+                <p>1. Drag n Drop images</p>
+                <p>2. Select target dimensions or aspect ratio</p>
+                <p>3. Crop away!</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

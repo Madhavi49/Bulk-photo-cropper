@@ -1,0 +1,432 @@
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+    color: #222;
+    line-height: 1.5;
+}
+
+/* =========================================
+   2. NAVBAR & BREADCRUMBS
+   ========================================= */
+.navbar {
+    height: 45px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.breadcrumb {
+    font-size: 12px;
+}
+
+.home { color: #222; text-decoration: none; }
+.separator { margin: 0 8px; color: #999; }
+.current { color: #16c76d; font-weight: bold; }
+
+/* =========================================
+   3. MAIN SECTION WRAPPER
+   ========================================= */
+.main-section {
+    background: #edf8f3;
+    min-height: calc(100vh - 45px);
+    padding: 25px 40px;
+}
+
+/* For pages that need a fixed height (Resize Page) */
+.main-layout {
+    display: flex;
+    height: calc(100vh - 45px);
+    background: #f8fafb;
+}
+.steps-small {
+    text-align: center;      /* Centers the text in the middle */
+    margin-top: 40px;        /* Adds space below the upload box */
+    font-family: sans-serif;
+    color: #333;
+}
+
+.steps-small h4 {
+    font-size: 16px;         /* Small heading */
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.steps-small .sub-text {
+    font-size: 14px;         /* Smaller subtitle */
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.steps-small .points p {
+    font-size: 13px;         /* Smallest font for the steps */
+    margin: 4px 0;           /* Tight spacing between lines */
+    color: #444;
+}
+
+/* =========================================
+   4. HOME PAGE (INDEX) STYLES
+   ========================================= */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo {
+    width: 28px; height: 28px; border-radius: 6px;
+    background: #16c76d; display: flex; align-items: center;
+    justify-content: center; color: white; font-size: 14px;
+}
+
+.hero { text-align: center; margin-top: 40px; }
+.hero h1 { font-size: 32px; font-weight: 700; color: #222; line-height: 1.3; }
+.hero h1 span { color: #16c76d; }
+.hero p {
+    max-width: 700px; margin: 20px auto;
+    color: #777; font-size: 13px; line-height: 1.6;
+}
+
+.upload-box {
+    width: 85%; max-width: 1000px; height: 140px;
+    margin: 40px auto; border: 2px dashed #8adfb4;
+    border-radius: 12px; background: rgba(255,255,255,0.4);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+}
+.upload-box p { color: #16c76d; font-size: 14px; margin-bottom: 15px; }
+.upload-box button {
+    border: none; background: #16c76d; color: white;
+    padding: 12px 30px; border-radius: 6px; cursor: pointer;
+    font-weight: 600; transition: 0.3s;
+}
+.upload-box button:hover { background: #11b861; }
+
+/* =========================================
+   5. RESIZE PAGE (GALLERY & SIDEBAR)
+   ========================================= */
+/* Inputs on one line */
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Checkboxes on one line */
+.checkbox-row {
+    display: flex;
+    gap: 10px;
+    white-space: nowrap;
+    margin-top: 20px;
+}
+
+.checkbox-row label {
+    font-size: 11px; /* Small to fit on one line */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+   .gallery-container {
+    flex: 1; padding: 30px; overflow-y: auto;
+}
+
+.gallery-header {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 25px;
+}
+
+.add-images-btn {
+    background: white; border: 1px solid #ddd;
+    padding: 6px 14px; border-radius: 6px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; cursor: pointer;
+}
+.plus-icon {
+    background: #16c76d; color: white; width: 22px; height: 22px;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 16px;
+}
+
+/* The 4-column Grid */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.image-card {
+    background: white; border: 1px solid #eee;
+    border-radius: 12px; padding: 15px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.img-preview {
+    height: 150px; display: flex; align-items: center;
+    justify-content: center; margin-bottom: 12px;
+}
+.img-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.dim-tag {
+    background: #bcffdb; color: #0c6d3c;
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600;
+}
+
+/* SIDEBAR FIX: Ensuring the button is at the bottom */
+/* Sidebar Form Layout */
+.sidebar-panel {
+    width: 360px;
+    background: #fff;
+    border-left: 1px solid #eee;
+    padding: 35px 20px; /* Reduced side padding slightly to fit text */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Checkboxes on ONE LINE */
+.checkbox-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+    white-space: nowrap; /* Prevents text from jumping to next line */
+}
+
+.checkbox-row label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px; /* Slightly smaller to fit across the width */
+    color: #333;
+    cursor: pointer;
+}
+
+.checkbox-row input[type="checkbox"] {
+    accent-color: #16c76d;
+    width: 14px;
+    height: 14px;
+}
+
+/* Tab Toggle Pill Style */
+.tab-pill-container {
+    display: flex;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 25px;
+}
+
+.tab-pill {
+    flex: 1;
+    border: none;
+    background: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: #666;
+}
+
+.tab-pill.active {
+    background: #16c76d;
+    color: #fff;
+}
+
+/* Width/Height Input Boxes */
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-row input {
+    width: 85px;
+    padding: 8px;
+    border: 1.5px solid #16c76d;
+    background: #f1fff8;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    outline: none;
+}
+.tab-btn.active { background: #16c76d; color: white; border-color: #16c76d; }
+
+.sidebar-hint { font-size: 12px; margin-bottom: 15px; color: #555; }
+
+.input-group {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 15px;
+}
+.input-group label { font-size: 13px; }
+.input-group input {
+    width: 75px; padding: 7px; border: 1px solid #16c76d;
+    background: #f1fff8; border-radius: 8px; text-align: center; outline: none;
+}
+
+.percent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.perc-card {
+    background: #f8fafb; border: 1px solid #ddd; padding: 10px;
+    border-radius: 8px; cursor: pointer; font-size: 12px; text-align: center;
+}
+.perc-card.active { background: #16c76d; color: white; border-color: #16c76d; }
+
+.options-list { margin-top: 15px; display: flex; flex-direction: column; gap: 12px; font-size: 12px; }
+
+.resize-submit-btn {
+    margin-top: auto; /* PINS BUTTON TO BOTTOM */
+    background: #16c76d; color: white; border: none;
+    padding: 16px; border-radius: 10px; font-size: 16px;
+    font-weight: 600; cursor: pointer; width: 100%;
+}
+
+/* =========================================
+   6. RESULT / SUCCESS PAGE
+   ========================================= */
+.success-layout { text-align: center; background: #ffffff; padding: 40px; }
+
+.download-box { margin: 30px 0; }
+/* --- Success Page Layout Fix --- */
+.download-box-final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* This forces them to be on separate lines */
+    align-items: center;
+    gap: 15px; /* Adds space between button and text link */
+}
+
+.download-anchor {
+    text-decoration: none; /* Removes underline from button link */
+}
+
+.back-link {
+    display: block;
+    color: #16c76d;
+    font-size: 13px;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+.download-btn-main {
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid #00c853;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #00c853;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #f0fff4;
+    cursor: pointer;
+}
+
+.tools-container {
+    max-width: 900px; margin: 40px auto; padding: 25px;
+    border: 1px solid #eee; border-radius: 12px; text-align: left;
+}
+.tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+.tool-card {
+    display: flex; align-items: center; padding: 10px;
+    border: 1px solid #f0f0f0; border-radius: 8px; cursor: pointer;
+}
+.tool-name { font-size: 11px; flex-grow: 1; padding: 0 10px; }
+.tool-arrow { color: #ccc; }
+
+.share-footer { margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+.social-btns { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+.social-btn {
+    background: white; border: 1px solid #ddd; padding: 7px 20px;
+    border-radius: 6px; font-size: 12px; cursor: pointer;
+}
+/* --- PERCENTAGE GRID (The 3rd Page Boxes) --- */
+.perc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two boxes side by side */
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* The outer box */
+.perc-box {
+    position: relative; /* REQUIRED for the fill to work */
+    height: 90px;
+    border: 1.5px solid #16c76d;
+    border-radius: 12px;
+    background: #ffffff;
+    cursor: pointer;
+    overflow: hidden; /* Clips the green fill to the rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The 70% box that takes the full width */
+.perc-box.full-width {
+    grid-column: span 2;
+    height: 48px;
+}
+
+/* THE "VOLUME" FILL (The green bar) */
+.perc-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #e6fff2; /* Light green for non-selected boxes */
+    z-index: 1;          /* Stays behind the text */
+    transition: 0.3s ease;
+}
+
+/* When you click a box, the fill turns dark green */
+.perc-box.active .perc-fill {
+    background: #16c76d; 
+}
+
+/* The Text Label */
+.perc-label {
+    position: relative;
+    z-index: 2;          /* Stays on top of the green fill */
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    color: #222;
+}
+
+/* Text turns white when the box is active (dark green background) */
+.perc-box.active .perc-label {
+    color: #ffffff;
+}
+/* Style for the Home link in the navbar */
+.navbar a {
+    text-decoration: none; /* Removes the blue underline */
+    color: inherit;        /* Keeps the text color the same as the rest of the navbar */
+    display: inline-flex;  /* Helps align the emoji and text perfectly */
+    align-items: center;
+}
+
+/* Optional: change color slightly when you hover over it */
+.navbar a:hover {
+    color: #007bff;        /* Change this to any color you like (e.g., green or blue) */
+}
